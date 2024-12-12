@@ -1,21 +1,21 @@
 import { useState } from "react";
 export default function Bill({ curOpen, setCurOpen, addFriend, setAddFriend }) {
   const friend = addFriend.find((friend) => curOpen === friend.id);
-  const [bill, setBill] = useState(null);
-  const [expense, setExpense] = useState(null);
-  const [expenseFriend, setExpenseFriend] = useState(null);
+  const [bill, setBill] = useState(0);
+  const [expense, setExpense] = useState(0);
+  const [expenseFriend, setExpenseFriend] = useState(0);
   const [whoPay, setWhoPay] = useState(0);
   function splitBill(e) {
     e.preventDefault();
-    if (bill == null || expense == null || expenseFriend == null) return;
+    if (bill === null || expense === null || expenseFriend === null) return;
     let findFriendBalance = addFriend.find(
-      (per) => per.id == friend.id
+      (per) => per.id === friend.id
     ).balance;
-    if (whoPay == 0) {
+    if (whoPay === 0) {
       findFriendBalance = -expenseFriend;
       setAddFriend((fr) =>
         fr.map((person) =>
-          person.id == friend.id
+          person.id === friend.id
             ? { ...person, balance: person.balance - findFriendBalance }
             : person
         )
@@ -24,7 +24,7 @@ export default function Bill({ curOpen, setCurOpen, addFriend, setAddFriend }) {
       findFriendBalance = expenseFriend;
       setAddFriend((fr) =>
         fr.map((person) =>
-          person.id == friend.id
+          person.id === friend.id
             ? { ...person, balance: person.balance - findFriendBalance }
             : person
         )
@@ -44,13 +44,13 @@ export default function Bill({ curOpen, setCurOpen, addFriend, setAddFriend }) {
           <label>💸Bill value</label>
           <input
             type="number"
-            value={bill}
+            value={bill > 0 && bill}
             onChange={(e) => setBill(e.target.value)}
           />
           <label>🧔Your expense</label>
           <input
             type="number"
-            value={expense}
+            value={expense > 0 && expense}
             onChange={(e) => {
               setExpense(e.target.value);
               setExpenseFriend((cur) => (cur = bill - e.target.value));
@@ -60,7 +60,7 @@ export default function Bill({ curOpen, setCurOpen, addFriend, setAddFriend }) {
           <input
             type="number"
             disabled
-            value={Number(expenseFriend)}
+            value={expenseFriend > 0 && expenseFriend}
             onChange={(e) => setExpenseFriend(e.target.value)}
           />
           <label>🤑Who is paying the bill?</label>

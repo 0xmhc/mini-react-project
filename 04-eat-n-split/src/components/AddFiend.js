@@ -8,7 +8,7 @@ export default function AddFiend({ setAddFriend, setOpenToAddFriend }) {
 
   function handleForm(e) {
     e.preventDefault();
-    if (image.length == 0 || name.length == 0) return;
+    if (image.length === 0 || name.length === 0) return;
     setAddFriend(
       (friend) => (friend = [...friend, { id, name, image, balance: 0 }])
     );
