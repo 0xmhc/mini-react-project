@@ -36,6 +36,7 @@ export default function App() {
       />
       {curOpen > 0 && (
         <Bill
+          key={curOpen}
           addFriend={addFriend}
           setAddFriend={setAddFriend}
           curOpen={curOpen}
