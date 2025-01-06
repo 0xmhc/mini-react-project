@@ -10,22 +10,30 @@ import Progress from "./Progress";
 import FinishScreen from "./FinishScreen";
 import Footer from "./Footer";
 import Timer from "./Timer";
+import Choose from "./Choose";
 const SECS_PER_QUESTION = 30;
 const initialState = {
   questions: [],
-
-  // loading - error - ready - active - finished
+  numQuestions: null,
+  // loading - error - choose - ready - active - finished
   status: "loading",
   index: 0,
   answer: null,
   points: 0,
-  highscore: 0,
+  highscore: localStorage.getItem("highscore") || 0,
   secondsRemaining: null,
 };
 function reducer(state, action) {
   switch (action.type) {
     case "dataRecieved":
       return { ...state, questions: action.payload, status: "ready" };
+    case "choosenmbrOfData":
+      return {
+        ...state,
+        status: "choose",
+        numQuestions: action.payload,
+        questions: state.questions.slice(0, action.payload),
+      };
     case "dataFailed":
       return { ...state, status: "error" };
     case "start":
@@ -92,6 +100,7 @@ function App() {
       <Main>
         {status === "loading" && <Loader />}
         {status === "error" && <Error />}
+        {status === "choose" && <Choose dispatch={dispatch} />}
         {status === "ready" && (
           <StartScreen numQuestions={numQuestions} dispatch={dispatch} />
         )}
