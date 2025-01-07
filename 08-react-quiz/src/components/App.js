@@ -13,6 +13,7 @@ import Timer from "./Timer";
 import Choose from "./Choose";
 const SECS_PER_QUESTION = 30;
 const initialState = {
+  allQuestions: [],
   questions: [],
   numQuestions: null,
   // loading - error - choose - ready - active - finished
@@ -26,13 +27,21 @@ const initialState = {
 function reducer(state, action) {
   switch (action.type) {
     case "dataRecieved":
-      return { ...state, questions: action.payload, status: "ready" };
+      return {
+        ...state,
+        allQuestions: action.payload,
+        questions: action.payload,
+        status: "choose",
+      };
     case "choosenmbrOfData":
       return {
         ...state,
-        status: "choose",
+        status: "ready",
         numQuestions: action.payload,
-        questions: state.questions.slice(0, action.payload),
+        questions: state.allQuestions.slice(
+          0,
+          state.numQuestions || action.payload
+        ),
       };
     case "dataFailed":
       return { ...state, status: "error" };
@@ -65,7 +74,8 @@ function reducer(state, action) {
       return {
         ...initialState,
         questions: state.questions,
-        status: "ready",
+        allQuestions: state.allQuestions,
+        status: "choose",
       };
     case "tick":
       return {
