@@ -9,12 +9,6 @@ function StartScreen({ numQuestions, dispatch }) {
       >
         Let's start
       </button>
-      <button
-        className="btn btn-ui"
-        onClick={() => dispatch({ type: "choosenmbrOfData" })}
-      >
-        nmbr question
-      </button>
     </div>
   );
 }
