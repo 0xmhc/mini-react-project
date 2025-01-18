@@ -35,42 +35,6 @@
         "lng": 13.376933665713324
       },
       "id": "98443197"
-    },
-    {
-      "id": "2050",
-      "cityName": "Bouknadel",
-      "country": "Morocco",
-      "emoji": "🇲🇦",
-      "date": "2025-01-18T10:35:56.454Z",
-      "notes": "test",
-      "position": {
-        "lat": "34.10725639663121",
-        "lng": "-6.723632812500001"
-      }
-    },
-    {
-      "id": "68e9",
-      "cityName": "Bouzeghaia",
-      "country": "Algeria",
-      "emoji": "🇩🇿",
-      "date": "2025-01-18T10:39:33.317Z",
-      "notes": "test",
-      "position": {
-        "lat": "36.40359962073253",
-        "lng": "1.2744140625000002"
-      }
-    },
-    {
-      "id": "6aa4",
-      "cityName": "Balearic Islands",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2023-08-24T10:39:46.000Z",
-      "notes": "palma is greate",
-      "position": {
-        "lat": "39.2832938689385",
-        "lng": "3.1640625000000004"
-      }
     }
   ]
 }
