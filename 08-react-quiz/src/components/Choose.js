@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useQuiz } from "../contexts/QuizContext";
 
-function Choose({ dispatch }) {
+function Choose() {
+  const { dispatch } = useQuiz();
   const [nmbrQuestions, setNmbrQuestions] = useState("");
   const [errorInput, setErrorInput] = useState(false);
   useEffect(() => {
